@@ -11,6 +11,64 @@ body {
     font-family: "Source Code Pro", Monaco, Andale Mono, Consolas, monospace;
 }
 
+.hide {
+    display: none;
+}
+
+#alert {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    width: 25%;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1 transparent;
+    color: #a94442;
+    padding: 15px 15px 15px 55px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    z-index: 1000;
+    font-size: 12px;
+}
+
+.icon-alert {
+    height: 40px;
+    min-height: 30px;
+    width: 40px;
+    display: block;
+    position: absolute;
+    top: 12px;
+    left: 9px;
+}
+.icon-alert:before{
+    content: '';
+    height: 0px;
+    width: 0px;
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border: transparent solid;
+    border-bottom-color: #a94442;
+    border-width: 0px 25px 36px 15px;
+}
+.icon-alert:after{
+    content: '!';
+    height: 0px;
+    width: 0px;
+    display: block;
+    position: absolute;
+    top: 7px;
+    left: 6px;
+    border: transparent solid;
+    border-bottom-color: #fff;
+    color: #a94442;
+    border-width: 0px 19px 25px 8px;
+    font-family: Verdana;
+    font-size: 19px;
+    line-height: 31px;
+    text-indent: -2px;
+}
+
 #content > h1 {
     margin: 0;
     padding-top: 1%;
@@ -62,9 +120,8 @@ textarea {
     background: #ffffff;
     color: dimgray;
     font-family: "Ubuntu", "lucida grande", tahoma, verdana, arial, sans-serif;
+    white-space: normal;
 }
-
-
 
 #markdown > pre a {
     border: none;

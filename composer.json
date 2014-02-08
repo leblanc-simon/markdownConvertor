@@ -1,0 +1,6 @@
+{
+    "name": "markdownConvertor",
+    "require": {
+        "erusev/parsedown": "0.9.4"
+    }
+}

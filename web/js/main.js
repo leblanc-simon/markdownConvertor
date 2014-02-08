@@ -1,4 +1,18 @@
 var send = null;
+var in_print_mode = false;
+
+function preparePrint()
+{
+    in_print_mode = true;
+    $('body').addClass('print');
+}
+
+
+function escapePrint()
+{
+    in_print_mode = false;
+    $('body').removeClass('print');
+}
 
 $(document).ready(function(){
     $('#source > textarea').on('keyup', function(){
@@ -40,5 +54,19 @@ $(document).ready(function(){
                 }
             }
         });
+    });
+
+    $(document).bind('keyup keydown', function(e){
+        if (in_print_mode === false && e.ctrlKey && e.keyCode == 80) {
+            preparePrint();
+            return false;
+        }
+
+        if (in_print_mode === true && e.keyCode == 27) {
+            escapePrint();
+            return false;
+        }
+
+        return true;
     })
 });

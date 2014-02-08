@@ -1,11 +1,11 @@
 html, body {
     height: 100%;
-    background-color: #333;
 }
 
 body {
     margin: 0;
     color: #fff;
+    background-color: #333;
     box-shadow: inset 0 0 100px rgba(0,0,0,.5);
     font-family: "Source Code Pro", Monaco, Andale Mono, Consolas, monospace;
 }
@@ -188,4 +188,42 @@ textarea {
     border-color: #bbb;
     border-style: solid;
     padding: 10px;
+}
+
+
+
+.print {
+    background: #fff;
+    box-shadow: none;
+}
+
+.print #alert {
+    display: none;
+}
+
+.print #content > h1 {
+    display: none;
+}
+
+.print #source {
+    display: none;
+}
+
+.print #markdown h2 {
+    display: none;
+}
+
+.print #markdown {
+    position: relative;
+    width: auto;
+    border: none;
+    overflow: inherit;
+    right: auto;
+    height: auto;
+    top: 0;
+    padding: 0;
+}
+
+.print #markdown > pre {
+    overflow: inherit;
 }

@@ -1,0 +1,133 @@
+html, body {
+    height: 100%;
+    background-color: #333;
+}
+
+body {
+    margin: 0;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+    font-family: "Source Code Pro", Monaco, Andale Mono, Consolas, monospace;
+}
+
+#content > h1 {
+    margin: 0;
+    padding-top: 1%;
+    text-align: center;
+}
+
+#content > div > h2 {
+    margin: 0;
+}
+
+#content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+#source, #markdown {
+    position: absolute;
+    width: 45%;
+    height: 86%;
+    border: 1px solid darkgray;
+    padding: 1%;
+    overflow: hidden;
+    top:8%;
+}
+
+#source {
+    left: 2%;
+}
+
+#markdown {
+    right: 2%;
+}
+
+textarea {
+    width: 99%;
+    height: 95%;
+    font-size: 16px;
+}
+
+#markdown > pre {
+    width: 98%;
+    height: 94%;
+    max-width: 98%;
+    max-height: 94%;
+    padding: 1%;
+    margin: 0;
+    overflow: scroll;
+    background: #ffffff;
+    color: dimgray;
+    font-family: "Ubuntu", "lucida grande", tahoma, verdana, arial, sans-serif;
+}
+
+
+
+#markdown > pre a {
+    border: none;
+    color: #59b;
+    padding: 0;
+}
+
+#markdown > pre a code {
+    color: #59b;
+}
+
+#markdown > pre blockquote {
+    background: none;
+    border-left: 3px solid #777;
+    color: #777;
+    padding: 0 0 0 10px;
+}
+
+#markdown > pre code {
+    background: #eee;
+    border: 1px solid #ddd;
+    padding: 0 5px 1px 5px;
+}
+
+#markdown > pre h1, #markdown > pre h2, #markdown > pre h3, #markdown > pre h4, #markdown > pre h5, #markdown > pre h6 {
+    line-height: normal;
+    margin: 20px 0;
+}
+
+#markdown > pre hr {
+    background: transparent url("https://github.com/assets/primer/markdown/dirty-shade-aa53f50177de6e9a016a801161874096327f9f80.png") repeat-x 0 0;
+    border: 0 none;
+    color: #ccc;
+    height: 4px;
+    padding: 0;
+    margin: 15px 0;
+}
+
+#markdown > pre pre {
+    background: #eee;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    color: #555;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+#markdown > pre pre code {
+    background: none;
+    border: none;
+    padding: 0;
+
+}
+
+#markdown > pre table {
+    border-width: 1px 0 0 1px;
+    border-color: #bbb;
+    border-style: solid;
+}
+
+#markdown > pre table td, #markdown > pre table th {
+    border-width: 0 1px 1px 0;
+    border-color: #bbb;
+    border-style: solid;
+    padding: 10px;
+}

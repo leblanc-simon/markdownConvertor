@@ -216,7 +216,7 @@ textarea {
     display: none;
 }
 
-.print #markdown h2 {
+.print #markdown > h2 {
     display: none;
 }
 

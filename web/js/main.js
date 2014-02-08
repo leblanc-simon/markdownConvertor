@@ -19,6 +19,7 @@ $(document).ready(function(){
                     $(this).find('#alert').addClass('hide');
                     $(this).find('#alert-content').html('');
                     $(this).find('#markdown > pre').html(data);
+                    $('#markdown > pre pre code').each(function(i, e) {hljs.highlightBlock(e)});
                 },
                 204: function() {
                     $(this).find('#alert').addClass('hide');

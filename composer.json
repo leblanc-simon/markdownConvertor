@@ -14,6 +14,6 @@
     ],
 
     "require": {
-        "erusev/parsedown": "0.9.4"
+        "erusev/parsedown": "dev-master"
     }
 }

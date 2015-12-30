@@ -6,7 +6,7 @@
  as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
  */
 
-require_once dirname(__DIR__).DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
+require_once dirname(__DIR__).'/vendor/autoload.php';
 
 if (isset($_SERVER['REQUEST_METHOD']) === false || (string)$_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('HTTP/1.0 405 Method Not Allowed');
@@ -25,4 +25,5 @@ if (empty($source) === true) {
     exit();
 }
 
-echo Parsedown::instance()->parse($source);
+$parsedown = new ParsedownExtra();
+echo $parsedown->text($source);

@@ -1,7 +1,7 @@
 {
-    "name": "markdownConvertor",
+    "name": "leblanc-simon/markdownConvertor",
     "description": "A simple page which convert markdown text to HTML in realtime",
-    "version": "0.0.42",
+    "version": "1.0.0",
     "license": "WTFPL",
 
     "type": "application",
@@ -14,6 +14,6 @@
     ],
 
     "require": {
-        "erusev/parsedown-extra": "~0.7"
+        "erusev/parsedown-extra": "^0.7"
     }
 }

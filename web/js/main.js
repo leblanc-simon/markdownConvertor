@@ -32,7 +32,7 @@ $(document).ready(function(){
             url: './convert.php',
             type: 'POST',
             context: document.body,
-            data: 'source=' + encodeURI(content),
+            data: 'source=' + encodeURIComponent(content),
             dataType: 'html',
             statusCode: {
                 200: function(data) {

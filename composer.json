@@ -14,6 +14,6 @@
     ],
 
     "require": {
-        "erusev/parsedown-extra": "^0.7"
+        "leblanc-simon/parsedown-checkbox": "^0.0.1"
     }
 }

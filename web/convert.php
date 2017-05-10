@@ -25,5 +25,6 @@ if (empty($source) === true) {
     exit();
 }
 
-$parsedown = new ParsedownExtra();
+$parsedown = new ParsedownCheckbox();
 echo $parsedown->text($source);
+

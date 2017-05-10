@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "642c410ec54838988a818d9f3a377df2",
-    "content-hash": "fdf075202a23b80400ae56f27e796719",
+    "hash": "a5c2ba2f6d82fd5b7676e8fc3ac5a729",
+    "content-hash": "c08c5914ae35b17b41c4b5bbae07505d",
     "packages": [
         {
             "name": "erusev/parsedown",
-            "version": "1.6.1",
+            "version": "1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/erusev/parsedown.git",
-                "reference": "20ff8bbb57205368b4b42d094642a3e52dac85fb"
+                "reference": "1bf24f7334fe16c88bf9d467863309ceaf285b01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/20ff8bbb57205368b4b42d094642a3e52dac85fb",
-                "reference": "20ff8bbb57205368b4b42d094642a3e52dac85fb",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/1bf24f7334fe16c88bf9d467863309ceaf285b01",
+                "reference": "1bf24f7334fe16c88bf9d467863309ceaf285b01",
                 "shasum": ""
             },
             "require": {
@@ -47,7 +47,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2016-11-02 15:56:58"
+            "time": "2017-03-29 16:04:15"
         },
         {
             "name": "erusev/parsedown-extra",
@@ -92,6 +92,51 @@
                 "parser"
             ],
             "time": "2015-11-01 10:19:22"
+        },
+        {
+            "name": "leblanc-simon/parsedown-checkbox",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/leblanc-simon/parsedown-checkbox.git",
+                "reference": "6bf5917da0b943910f4c6a1c5fe3ecc6f32b47d6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/leblanc-simon/parsedown-checkbox/zipball/6bf5917da0b943910f4c6a1c5fe3ecc6f32b47d6",
+                "reference": "6bf5917da0b943910f4c6a1c5fe3ecc6f32b47d6",
+                "shasum": ""
+            },
+            "require": {
+                "erusev/parsedown-extra": "^0.7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "ParsedownCheckbox.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Leblanc",
+                    "email": "contact@leblanc-simon.eu",
+                    "homepage": "https://www.leblanc-simon.fr"
+                }
+            ],
+            "description": "An extension of Parsedown and ParsedownExtra that adds support for checkbox",
+            "homepage": "https://github.com/leblanc-simon/parsedown-checkbox",
+            "keywords": [
+                "checkbox",
+                "markdown",
+                "markdown extra",
+                "parsedown",
+                "parser"
+            ],
+            "time": "2017-05-10 03:09:01"
         }
     ],
     "packages-dev": [],

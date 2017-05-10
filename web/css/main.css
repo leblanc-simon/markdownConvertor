@@ -197,7 +197,18 @@ textarea {
     padding: 10px;
 }
 
+#markdown .parsedown-task-list {
+    list-style: none;
+    margin-left: -40px;
+}
 
+#markdown .parsedown-task-list .parsedown-task-list {
+    margin-left: 0;
+}
+
+#markdown .parsedown-task-list-close {
+    text-decoration: line-through;
+}
 
 .print {
     background: #fff;

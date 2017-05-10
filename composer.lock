@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a5c2ba2f6d82fd5b7676e8fc3ac5a729",
-    "content-hash": "c08c5914ae35b17b41c4b5bbae07505d",
+    "hash": "7a5f359987f83d26cb4d08dbb14230d0",
+    "content-hash": "9f6af541bbbab524b301c9eb7d894b6d",
     "packages": [
         {
             "name": "erusev/parsedown",
@@ -95,16 +95,16 @@
         },
         {
             "name": "leblanc-simon/parsedown-checkbox",
-            "version": "0.0.1",
+            "version": "0.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leblanc-simon/parsedown-checkbox.git",
-                "reference": "6bf5917da0b943910f4c6a1c5fe3ecc6f32b47d6"
+                "reference": "abd857aafc890f55421c87cb9b3cfe9b2791f23f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leblanc-simon/parsedown-checkbox/zipball/6bf5917da0b943910f4c6a1c5fe3ecc6f32b47d6",
-                "reference": "6bf5917da0b943910f4c6a1c5fe3ecc6f32b47d6",
+                "url": "https://api.github.com/repos/leblanc-simon/parsedown-checkbox/zipball/abd857aafc890f55421c87cb9b3cfe9b2791f23f",
+                "reference": "abd857aafc890f55421c87cb9b3cfe9b2791f23f",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                 "parsedown",
                 "parser"
             ],
-            "time": "2017-05-10 03:09:01"
+            "time": "2017-05-10 03:43:13"
         }
     ],
     "packages-dev": [],

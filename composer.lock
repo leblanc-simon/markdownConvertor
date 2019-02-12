@@ -4,25 +4,29 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7a5f359987f83d26cb4d08dbb14230d0",
-    "content-hash": "9f6af541bbbab524b301c9eb7d894b6d",
+    "hash": "5538a2e6776d226187307b5460bc14ea",
+    "content-hash": "c6de35ed3ef2d262be668f47a6ac2303",
     "packages": [
         {
             "name": "erusev/parsedown",
-            "version": "1.6.2",
+            "version": "1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/erusev/parsedown.git",
-                "reference": "1bf24f7334fe16c88bf9d467863309ceaf285b01"
+                "reference": "92e9c27ba0e74b8b028b111d1b6f956a15c01fc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/1bf24f7334fe16c88bf9d467863309ceaf285b01",
-                "reference": "1bf24f7334fe16c88bf9d467863309ceaf285b01",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/92e9c27ba0e74b8b028b111d1b6f956a15c01fc1",
+                "reference": "92e9c27ba0e74b8b028b111d1b6f956a15c01fc1",
                 "shasum": ""
             },
             "require": {
+                "ext-mbstring": "*",
                 "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35"
             },
             "type": "library",
             "autoload": {
@@ -47,7 +51,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2017-03-29 16:04:15"
+            "time": "2018-03-08 01:11:30"
         },
         {
             "name": "erusev/parsedown-extra",
@@ -95,16 +99,16 @@
         },
         {
             "name": "leblanc-simon/parsedown-checkbox",
-            "version": "0.0.2",
+            "version": "0.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leblanc-simon/parsedown-checkbox.git",
-                "reference": "abd857aafc890f55421c87cb9b3cfe9b2791f23f"
+                "reference": "9868c4b1f5d59e7a3b2b350d82fa5c92848b3ec1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leblanc-simon/parsedown-checkbox/zipball/abd857aafc890f55421c87cb9b3cfe9b2791f23f",
-                "reference": "abd857aafc890f55421c87cb9b3cfe9b2791f23f",
+                "url": "https://api.github.com/repos/leblanc-simon/parsedown-checkbox/zipball/9868c4b1f5d59e7a3b2b350d82fa5c92848b3ec1",
+                "reference": "9868c4b1f5d59e7a3b2b350d82fa5c92848b3ec1",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +140,7 @@
                 "parsedown",
                 "parser"
             ],
-            "time": "2017-05-10 03:43:13"
+            "time": "2019-01-31 01:16:58"
         }
     ],
     "packages-dev": [],
@@ -145,6 +149,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-json": "*"
+    },
     "platform-dev": []
 }

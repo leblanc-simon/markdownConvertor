@@ -4,98 +4,246 @@
  terms of the Do What The Fuck You Want To Public License, Version 2,
  as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
  */
-var send = null;
-var in_print_mode = false;
+let controller, signal;
+let inPrintMode = false;
+let contentJustSaved = false;
+const sourceInput = document.querySelector('#source > textarea');
 
-function preparePrint()
-{
-    in_print_mode = true;
-    $('body').addClass('print');
-}
+/**
+ * Show print mode.
+ */
+const preparePrint = () => {
+    inPrintMode = true;
+    document.querySelector('body').classList.add('print');
+};
 
-function escapePrint()
-{
-    in_print_mode = false;
-    $('body').removeClass('print');
-}
+/**
+ * Return to edit mode.
+ */
+const escapePrint = () => {
+    inPrintMode = false;
+    document.querySelector('body').classList.remove('print');
+};
 
-$(document).ready(function(){
-    var $source = $('#source').find(' > textarea');
+/**
+ * Check if we must go or escape print mode.
+ *
+ * @param {object} event
+ * @returns {boolean}
+ */
+const printMode = event => {
+    if (inPrintMode === false && event.ctrlKey && 'p' === event.key) {
+        event.preventDefault();
+        preparePrint();
+        return false;
+    }
 
-    /**
-     * Replace tab by 4 spaces
-     * @see http://stackoverflow.com/a/1738888
-     */
-    $source.on('keydown', function (event) {
-        var key_code = event.keyCode || event.which;
+    if (inPrintMode === true && 'Escape' === event.key) {
+        event.preventDefault();
+        escapePrint();
+        return false;
+    }
 
-        if (key_code === 9) { // tab character
-            event.preventDefault();
+    return true;
+};
 
-            var value_tab = '    ';
-            var start_pos = this.selectionStart;
-            var end_pos = this.selectionEnd;
-            var scroll_top = this.scrollTop;
-            this.value = this.value.substring(0, start_pos) + value_tab + this.value.substring(end_pos, this.value.length);
-            this.focus();
-            this.selectionStart = start_pos + value_tab.length;
-            this.selectionEnd = start_pos + value_tab.length;
-            this.scrollTop = scroll_top;
-        }
-    });
+/**
+ * Replace Tab by 4 spaces.
+ *
+ * @param event
+ * @see http://stackoverflow.com/a/1738888
+ */
+const manageTabulation = event => {
+    if ('Tab' !== event.key) {
+        return;
+    }
 
-    $source.on('keyup', function () {
-        var content = $(this).val();
+    event.preventDefault();
 
-        if (send !== null) {
-            send.abort();
-        }
+    const valueTab = '    ';
+    const startPosition = sourceInput.selectionStart;
+    const endPosition = sourceInput.selectionEnd;
+    const scrollTop = sourceInput.scrollTop;
 
-        send = $.ajax({
-            url: './convert.php',
-            type: 'POST',
-            context: document.body,
-            data: 'source=' + encodeURIComponent(content),
-            dataType: 'html',
-            statusCode: {
-                200: function(data) {
-                    $(this).find('#alert').addClass('hide');
-                    $(this).find('#alert-content').html('');
-                    $(this).find('#markdown > pre').html(data);
-                    $('#markdown > pre pre code').each(function(i, e) {hljs.highlightBlock(e)});
-                },
-                204: function() {
-                    $(this).find('#alert').addClass('hide');
-                    $(this).find('#alert-content').html('');
-                    $(this).find('#markdown > pre').html('');
-                },
-                400: function() {
-                    $(this).find('#alert').removeClass('hide');
-                    $(this).find('#alert-content').html('Bad request : no content send in the server');
-                },
-                405: function() {
-                    $(this).find('#alert').removeClass('hide');
-                    $(this).find('#alert-content').html('Bad request : content no send with POST method');
-                },
-                500: function() {
-                    $(this).find('#alert').removeClass('hide');
-                    $(this).find('#alert-content').html('Big error : contact administrator');
-                }
-            }
+    sourceInput.value = sourceInput.value.substring(0, startPosition) +
+        valueTab + sourceInput.value.substring(endPosition, sourceInput.value.length);
+    sourceInput.focus();
+    sourceInput.selectionStart = startPosition + valueTab.length;
+    sourceInput.selectionEnd = startPosition + valueTab.length;
+    sourceInput.scrollTop = scrollTop;
+};
+
+/**
+ * Display an error message.
+ *
+ * @param msg
+ */
+const displayError = msg => {
+    document.getElementById('alert').classList.remove('hide');
+    document.getElementById('alert-content').innerHTML = msg;
+};
+
+/**
+ * Hide error messages.
+ */
+const hideError = () => {
+    document.getElementById('alert').classList.add('hide');
+    document.getElementById('alert-content').innerHTML = '';
+};
+
+/**
+ * Display the content converted to HTML.
+ *
+ * @param content
+ */
+const showContent = content => {
+    hideError();
+    document.querySelector('#markdown > pre').innerHTML = content;
+    if (content) {
+        document.querySelectorAll('#markdown > pre pre code').forEach(element => {
+            hljs.highlightBlock(element)
         });
-    });
+    }
+};
 
-    $(document).bind('keyup keydown', function (event) {
-        if (in_print_mode === false && event.ctrlKey && event.keyCode == 80) {
-            preparePrint();
-            return false;
+/**
+ * Convert Markdown code to HTML.
+ */
+const convertMarkdownToHTML = () => {
+    const content = sourceInput.value;
+
+    if (undefined !== controller) {
+        controller.abort();
+    }
+
+    controller = new AbortController();
+    signal = controller.signal;
+    fetch('./convert.php', {
+        signal: signal,
+        method: 'POST',
+        body: 'source=' + encodeURIComponent(content),
+        headers: {
+            'Content-Type':'application/x-www-form-urlencoded',
+        },
+        credentials: 'same-origin',
+        mode: 'cors',
+    }).then(response => {
+        if (response.ok) {
+            return response.text();
         }
 
-        if (in_print_mode === true && event.keyCode == 27) {
-            escapePrint();
-            return false;
+        const errors = {
+            400: 'Bad request : no content send in the server',
+            405: 'Bad request : content no send with POST method',
+            500: 'Big error : contact administrator',
+        };
+
+        if (response.status in errors) {
+            throw errors[response.status];
         }
 
-        return true;
+        throw 'Unknown error';
+    }).then(content => {
+        showContent(content);
+    }).catch(error => {
+        if (error && error.name && 'AbortError' === error.name) {
+            return;
+        }
+
+        displayError(error);
     });
-});
+};
+
+/**
+ * Save the content into a revision.
+ *
+ * @param event
+ */
+const saveContent = event => {
+    if (!event.ctrlKey || 's' !== event.key) {
+        return;
+    }
+
+    event.preventDefault();
+
+    const regexp = new RegExp('^#([a-z0-9]+)(/([0-9]+))?');
+    let body = 'content=' + encodeURIComponent(sourceInput.value);
+    if (window.location.hash && true === regexp.test(window.location.hash)) {
+        const matches = window.location.hash.match(regexp);
+        body += '&directory=' + encodeURIComponent(matches[1]);
+    }
+
+    fetch('./app.php', {
+        method: 'POST',
+        body: body,
+        headers: {
+            'Content-Type':'application/x-www-form-urlencoded',
+        },
+        credentials: 'same-origin',
+        mode: 'cors',
+    }).then(response => {
+        if (false === response.ok) {
+            throw 'Unknown error';
+        }
+
+        return response.json();
+    }).then(json => {
+        contentJustSaved = true;
+        window.location.hash = '#' + json.directory + '/' + json.revision;
+    }).catch(error => {
+        displayError(error);
+    })
+};
+
+/**
+ * Load the content from a revision.
+ */
+const loadContent = () => {
+    if (!window.location.hash || true === contentJustSaved) {
+        contentJustSaved = false;
+        return;
+    }
+
+    const regexp = new RegExp('^#([a-z0-9]+)(/([0-9]+))?');
+    if (false === regexp.test(window.location.hash)) {
+        // Bad hash
+        return;
+    }
+
+    const matches = window.location.hash.match(regexp);
+    let url = './app.php?directory=' + encodeURIComponent(matches[1]);
+
+    if (4 === matches.length && undefined !== matches[3]) {
+        url += '&revision=' + encodeURIComponent(matches[3]);
+    }
+
+    fetch(url, {
+        method: 'GET',
+        credentials: 'same-origin',
+        mode: 'cors',
+    }).then(response => {
+        if (false === response.ok) {
+            throw 'Unknow error';
+        }
+
+        return response.text();
+    }).then(content => {
+        sourceInput.value = content;
+        convertMarkdownToHTML();
+    }).catch(error => {
+        displayError(error);
+    })
+};
+
+(() => {
+    sourceInput.addEventListener('keydown', manageTabulation, false);
+    sourceInput.addEventListener('keyup', convertMarkdownToHTML, false);
+
+    document.addEventListener('keyup', printMode, false);
+    document.addEventListener('keydown', printMode, false);
+    document.addEventListener('keydown', saveContent, false);
+
+    loadContent();
+
+    window.addEventListener('hashchange', loadContent, false);
+})();

@@ -27,7 +27,7 @@ body {
     right: 2%;
     width: 25%;
     background-color: #f2dede;
-    border: 1px solid #ebccd1 transparent;
+    border: 1px solid #ebccd1;
     color: #a94442;
     padding: 15px 15px 15px 55px;
     margin-bottom: 20px;
@@ -47,20 +47,20 @@ body {
 }
 .icon-alert:before{
     content: '';
-    height: 0px;
-    width: 0px;
+    height: 0;
+    width: 0;
     display: block;
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     border: transparent solid;
     border-bottom-color: #a94442;
-    border-width: 0px 25px 36px 15px;
+    border-width: 0 25px 36px 15px;
 }
 .icon-alert:after{
     content: '!';
-    height: 0px;
-    width: 0px;
+    height: 0;
+    width: 0;
     display: block;
     position: absolute;
     top: 7px;
@@ -68,8 +68,8 @@ body {
     border: transparent solid;
     border-bottom-color: #fff;
     color: #a94442;
-    border-width: 0px 19px 25px 8px;
-    font-family: Verdana;
+    border-width: 0 19px 25px 8px;
+    font-family: Verdana, serif;
     font-size: 19px;
     line-height: 31px;
     text-indent: -2px;

@@ -1,0 +1,6 @@
+<?php
+
+return [
+    'git_bin' => '/usr/bin/git',
+    'data_directory' => __DIR__.'/datas',
+];

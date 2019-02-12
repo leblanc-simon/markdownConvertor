@@ -7,6 +7,8 @@ A simple page which convert markdown text to HTML in realtime
 ```bash
 git clone https://github.com/leblanc-simon/markdownConvertor.git
 composer install
+cp config.php.dist config.php
+# Edit if necessary the content of config.php
 ```
 
 DOCUMENT_ROOT must be the **web** directory
